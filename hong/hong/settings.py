@@ -13,7 +13,8 @@ BOT_NAME = 'hong'
 
 SPIDER_MODULES = ['hong.spiders']
 NEWSPIDER_MODULE = 'hong.spiders'
-ITEM_PIPELINES = {'hong.pipelines.DmozPipeline':300}
+ITEM_PIPELINES = {'hong.pipelines.DmozPipeline':300,
+                  'hong.pipelines.ShixianPipeline':100}
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'hong (+http://www.yourdomain.com)'

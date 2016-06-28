@@ -20,17 +20,16 @@ class DmozItem(scrapy.Item):
     link = Field()
     desc = Field()
 
+
 class ShixianItem(scrapy.Item):
     nick = Field()
     company = Field()
     title = Field()
     workYear = Field()
-    company = Field()
     city = Field()
     kind = Field()
     techExp = Field()
     proExp = Field()
     daySalary = Field()
-    proExp = Field()
     partTime = Field()
     expLocation = Field()
