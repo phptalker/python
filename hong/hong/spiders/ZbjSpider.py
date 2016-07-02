@@ -58,7 +58,8 @@ class ZbjSpider(InitSpider):
         try:
 
             for i in range(1,100,1) :#self.start_urls :
-                url = "http://www.zbj.com/wdfw/pp" + str(i)+".html"
+                # url = "http://www.zbj.com/wdfw/pp" + str(i)+".html"
+                url = "http://home.zbj.com/p-p" + str(i)+".html"
                 yield Request(url)
         finally:
             pass
@@ -91,7 +92,16 @@ class ZbjSpider(InitSpider):
         items = []
         item = ZbjItem()
         item['url'] = response.meta['detail_url']
-        item['service']= response.meta['service'][0]
+        services = response.meta['service']
+        if(services):
+            temp = ''
+            for service in services:
+                if(temp != ''):
+                    temp = temp + ',' + service
+                else:
+                    temp =  service
+            item['service'] = temp
+        # item['service']= response.meta['service'][0]
         item['location']=response.meta['location'][0]
         item['company']= response.meta['name'][0]
         item['isCompany']= response.meta['isCompany'][0]

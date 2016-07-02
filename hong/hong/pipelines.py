@@ -216,7 +216,7 @@ class SxsoftPipeline(object):
         # return item
 
     def _do_upinsert(self, conn, item, spider):
-        # print item
+        print item
         if(item['nick']==''):
             return
         now = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
@@ -226,6 +226,13 @@ class SxsoftPipeline(object):
         ret = conn.fetchone()
 
         if ret:
+            return
+            # columns = {}
+            # for (key,value) in item:
+            #     if(value)!='':
+            #
+            # # for item
+            # sql =" update sxsoft "
             conn.execute("""
                 update sxsoft set nick = %s, company = %s, title = %s, workYear = %s, city = %s
                  , kind = %s, techExp = %s, proExp = %s, daySalary = %s , partTime = %s , expLocation = %s, skill = %s ,experience=%s , update_time = %s
@@ -306,6 +313,7 @@ class ZbjPipeline(object):
         ret = conn.fetchone()
 
         if ret:
+            return 
             conn.execute("""
                 update zbj set  company = %s, service = %s, location = %s, tel = %s
                  , detail = %s, update_time = %s,isCompany=%s,mobile=%s
