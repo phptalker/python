@@ -125,7 +125,7 @@ PROXIES = [
     # {'ip_port': '122.224.249.122:8088', 'user_pass': ''},
 ]
 COOKIES_ENABLED=False
-DOWNLOAD_DELAY=3
+DOWNLOAD_DELAY=1
 DOWNLOADER_MIDDLEWARES = {
 #    'cnblogs.middlewares.MyCustomDownloaderMiddleware': 543,
 #     'hong.middlewares.RandomUserAgent': 1,

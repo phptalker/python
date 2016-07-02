@@ -1,6 +1,10 @@
 #! /usr/bin/env python
 # coding=utf-8
 #
+# -*- coding: utf-8 -*-
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 import logging
 from scrapy.spiders.init import InitSpider
 
@@ -53,9 +57,9 @@ class ZbjSpider(InitSpider):
     def start_requests(self):
         try:
 
-            for i in range(1,2,1) :#self.start_urls :
-                url = "http://www.zbj.com/rjkf/pp" + str(i)+".html"
-                yield Request(url,headers=self.headers)
+            for i in range(1,100,1) :#self.start_urls :
+                url = "http://www.zbj.com/wdfw/pp" + str(i)+".html"
+                yield Request(url)
         finally:
             pass
 
@@ -76,7 +80,7 @@ class ZbjSpider(InitSpider):
             # logging.info(location)
             # logging.info("dddddddddddddddddddddddddddddddddddddddddddddddddddd")
             detail_url = sites[0]
-            yield Request(detail_url,headers=self.headers , callback=self.parse_detail,meta={'detail_url':detail_url,'name':companyName,'service':service,'location':location,'isCompany':isCompany})
+            yield Request(detail_url , callback=self.parse_detail,meta={'detail_url':detail_url,'name':companyName,'service':service,'location':location,'isCompany':isCompany})
 
     def parse_detail(self,response):
         # return
@@ -107,6 +111,6 @@ class ZbjSpider(InitSpider):
                 if(re.search("\d{11}",tel)):
                     item['mobile'] = tel;
             item['tel'] = temp
-        logging.info(item)
+        # logging.info(item)
         items.append(item)
         return items

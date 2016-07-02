@@ -137,7 +137,7 @@ class ProginnPipeline(object):
         # return item
 
     def _do_upinsert(self, conn, item, spider):
-        print item
+        # print item
         now = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         conn.execute("""
                 select 1 from proginn where uid = %s
@@ -298,7 +298,7 @@ class ZbjPipeline(object):
         # return item
 
     def _do_upinsert(self, conn, item, spider):
-        print item
+        # print item
         now = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         conn.execute("""
                 select 1 from zbj where url = %s
@@ -314,6 +314,7 @@ class ZbjPipeline(object):
             # print """
             #    update cnblogsinfo set title = %s, description = %s, link = %s, listUrl = %s, updated = %s where linkmd5id = %s
             # """, (item['title'], item['desc'], item['link'], item['listUrl'], now, linkmd5id)
+            print("更新记录成功ID: %s" % ret[0])
         else:
             conn.execute("""
                 insert into zbj(
@@ -327,9 +328,9 @@ class ZbjPipeline(object):
                     `detail`,
                     `create_time`
                 )
-                values(%s, %s, %s, %s, %s , %s, %s)
+                values(%s, %s, %s, %s, %s , %s, %s , %s, %s)
             """, (item['url'], item['company'], item['service'], item['location'], item['tel'], item['isCompany'], item['mobile'], item['detail'], now))
-
+            print("添加新记录成功: %s" % conn.lastrowid)
     # 异常处理
     def _handle_error(self, failure, item, spider):
         logging.log(logging.ERROR,failure)
